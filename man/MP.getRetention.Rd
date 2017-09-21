@@ -18,7 +18,7 @@ MP.getRetention(api_secret = NULL, event = NULL, retention_type = "birth", born_
   \item{unit}{his is an alternate way of specifying interval and can be "day", "week", or "month".}
   \item{on}{The property expression to segment the second event on. See the expressions section above. https://mixpanel.com/help/reference/data-export-api#segmentation-expressions}
   \item{from_date}{The first date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.}
-  \item{to_date}{The last date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.}}
+  \item{to_date}{The last date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -37,7 +37,7 @@ retension2 <- MP.getRetention(api_secret = "abcdefg123456",
                               from_date = Sys.Date() - 15,
                               to_date = Sys.Date())
   }
-}
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

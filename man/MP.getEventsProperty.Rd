@@ -34,7 +34,7 @@ MP_super_test2 <- MP.getEventsProperty(api_secret = "abcdefg123456",
                                        from_date = "2017-07-01",
                                        to_date = "2017-07-25")
   }
-}
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
