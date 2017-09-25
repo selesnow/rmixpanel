@@ -5,7 +5,7 @@
 * [Функции пакета rmixpanel](https://github.com/selesnow/rmixpanel#Функции-пакета-rmixpanel)
   * [MP.getEvents](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#mpgetevents---Получить-количество-разичных-событий-по-дням) - Получить количество разичных событий по дням.
   * [MP.getEventsProperty](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#mpgeteventsproperty---Получит-количество-события-в-разреще-одного-свойства-по-дням) - Получит количество события в разреще одного свойства по дням.
-  * [MP.getRetention]() - Получить когортный анализ.
+  * [MP.getRetention](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#mpgetretention----Получит-когортный-анализ) - Получить когортный анализ.
   * [MP.getRawData]() - Получить выгрузку сырых данных из Mixpanel.
 
 # Краткое описание пакета rmixpanel
@@ -195,7 +195,7 @@ retension_property <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988
 ### Пример использования 
 *Получить выгрузку событий emu и ивсех его свойтв за 10 июля 2017 года, только по источнику AdWords, и рекламным кампаниям в названии которых содержится Brand.*
 ```
-MixPanel.RawData <- MP.getRawData(api_secret = "b96211faab26f71556316b12babae418",
+MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   event = "emu",
                                   where = 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]',
                                   from_date = "2017-07-10",
@@ -205,7 +205,7 @@ MixPanel.RawData <- MP.getRawData(api_secret = "b96211faab26f71556316b12babae418
 *Получить выгрузку всех событий со всеми свойствами с 1 сентября 2017 года по 10 сентября 2017 года.*
 **Обработка такого запроса может продолжаться несколько часов, и более.
 ```
-MixPanel.RawData <- MP.getRawData(api_secret = "b96211faab26f71556316b12babae418",
+MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   from_date = "2017-09-01",
                                   to_date = "2017-09-10")
 ```
