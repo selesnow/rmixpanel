@@ -58,3 +58,21 @@ devtools::install_github("selesnow/rmixpanel")
 
 ## MP.getEvents - Получить количество разичных событий по дням.
 ### Аргументы
+
+* api_secret	- API Secret проекта из которого необходимо получить данные.
+* event	- Текстовый векотор в котором перечислены названия событий количество которых необходимо вернуть, пример: c("posting_success","emu","session_start","$custom_event:585946".
+* type	- Способ агрегации полученных данных, допустимые значения
+  * "general" - Общее количество событий
+  * "unique" - Количество посетителей создавших событие
+  * "average" - Среднее количество достижение события на пользователя
+* unit	- Тип временной группировки данных, допустимые значения:
+  * "minute" - Группировка по минутам
+  * "hour" - Группировка по часам
+  * "day" - Группировка по дням
+  * "week" - Группировка по неделям
+  * "month" - Группировка по месяцам
+* interva	- Целое число, количество временных единиц возврата данных, зависит от значения аргумента unit, если unit = "day", а в interval указано 5, то будут возвращены данные за текущий и 4 предыдущих дня, если unit = "month" а interval = 2, то будут возвращены данные за текущий и предыдущий месяц, используйте либо аргумент interval, либо date_frome - date_to, одновременно использовать эти аргументы нельзя.
+* from_date	
+The first date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
+* to_date	
+The last date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
