@@ -2,7 +2,7 @@
 * [Краткое описание пакета rmixpanel](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#Краткое-описание-пакета-rmixpanel)
 * [Установка пакта rmixpanel](https://github.com/selesnow/rmixpanel#Установка-пакета-rmixpanel)
 * [Как получить API Secret для работы с API Mixpanel](https://github.com/selesnow/rmixpanel#Как-получить-api_secret-для-работы-с-api-mixpanel)
-* Функции пакета rmixpanel
+* [Функции пакета rmixpanel](https://github.com/selesnow/rmixpanel#Функции-пакета-rmixpanel)
   * [MP.getEvents]() - Получить количество разичных событий по дням.
   * [MP.getEventsProperty]() - Получит количество события в разреще одного свойства по дням.
   * [MP.getRetention]() - Получить когортный анализ.
@@ -114,3 +114,25 @@ MP_events_month <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
 * from_date	- Начальная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
 * to_date		- Конечная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
 * limit - Максимальное количество возвращаемых строк, не обязательный аргумент. По умолчанию 10000
+
+### Пример использования 
+*Получить общее количество событий "$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням и свойству mp_country_code.*
+```
+MP_event_prop <- MP.getEventsProperty(api_secret = "b96211faab26f71556316b12babae418",
+                                      event = c("$custom_event:585946"),
+                                      property = "mp_country_code",
+                                      type = "general",
+                                      unit = "day",
+                                      from_date = "2017-07-01",
+                                      to_date = "2017-07-25")
+```
+*Получить общее количество событий "$custom_event:585946" за текущий и предыдущий месяц, с группировкой по месяцам и свойству mp_country_code.*
+```
+MP_event_prop_month <- MP.getEventsProperty(api_secret = "b96211faab26f71556316b12babae418",
+                                            event = c("$custom_event:585946"),
+                                            property = "mp_country_code",
+                                            type = "general",
+                                            interval = 2,
+                                            unit = "month")
+```
+
