@@ -1,5 +1,4 @@
-MP.getRetention <-
-function(api_secret = NULL,
+MP.getRetention <- function(api_secret = NULL,
                             event = NULL,
                             retention_type = "birth",
                             born_event = NULL,
@@ -7,10 +6,10 @@ function(api_secret = NULL,
                             where = NULL,
                             interval = NULL,
                             interval_count = NULL,
-                            unit = "day",
+                            unit = NULL,
                             on = NULL,
-                            from_date = Sys.Date() - 10,
-                            to_date = Sys.Date()){
+                            from_date = NULL,
+                            to_date = NULL){
   #Проверка агрументов
   
   
@@ -31,12 +30,24 @@ function(api_secret = NULL,
   
   #Отправка запроса к API
   api_answer <- GET(query_string)
-  stop_for_status(api_answer)
+
+  if(!is.null(content(api_answer)$error)){
+    stop(content(api_answer)$error)
+  }
+
+  #Парсим реультат
   mixpaneleventdata <- content(api_answer, "parsed", "text/csv")
   
+  #Запоминаем название колонок
+  first_col_names <- names(mixpaneleventdata)[c(1,2)]
+  #Переименовываем колонки
+  names(mixpaneleventdata)[1] <- "prop"
   #Преобразуем в правильный формат
-  new_data   <- gather(mixpaneleventdata,times, events, -`start date`)
-  
+  #new_data   <- gather(mixpaneleventdata,times, events, -`start date`)
+  new_data   <- gather(mixpaneleventdata,times, events,-prop)
+  #Возвращаем правильные имена колонок
+  names(new_data) <- c(first_col_names, "events")
+
   #Возвращаем ответ
   return(new_data)
 }
