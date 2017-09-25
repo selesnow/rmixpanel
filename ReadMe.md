@@ -1,6 +1,7 @@
 # Содержание ReadMe пакета rmixpanel
-* Краткое описание пакета rmixpanel
+* [Краткое описание пакета rmixpanel](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#Краткое-описание-пакета-rmixpanel)
 * Установка пакта rmixpanel
+* Как получить API Secret для работы с API Mixpanel
 * Функции пакета rmixpanel
   * [MP.getEvents]() - Получить количество разичных событий по дням.
   * [MP.getEventsProperty]() - Получит количество события в разреще одного свойства по дням.
@@ -27,6 +28,15 @@ if(!"rmixpanel" %in% installed.packages()[,1]){install.packages("devtools")}
 devtools::install_github("selesnow/rmixpanel")
 ```
 
+# Как получить api_secret для работы с API mixpanel
+Обязательным аргументом каждой функции пакета mixpanel является `api_secret`, найти его можно в веб интерфейсе платформы MixPanel следующим образом.
+
+1. Заходим в свою учётную запись mixpanel используя свой логин и пароль.
+!(http://img.netpeak.ua/alsey/150634204879_kiss_71kb.png)
+2. В основном выпадающем меню выбираем пункт "Accounts".
+!(http://img.netpeak.ua/alsey/150634211597_kiss_33kb.png)
+3. В открывшемся диалоговом окне открываем вкладку "Projects", и копируем API Secret нужного проекта.
+!(http://img.netpeak.ua/alsey/150634217727_kiss_57kb.png)
 # Функции пакета rmixpanel
 <table>
   <tr>
@@ -45,3 +55,6 @@ devtools::install_github("selesnow/rmixpanel")
      <td>MP.getRawData</td><td>Получить когортный анализ.</td>
   </tr>
 </table>
+
+## MP.getEvents - Получить количество разичных событий по дням.
+### Аргументы
