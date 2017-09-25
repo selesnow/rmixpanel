@@ -7,6 +7,7 @@
   * [MP.getEventsProperty](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#mpgeteventsproperty---Получит-количество-события-в-разреще-одного-свойства-по-дням) - Получит количество события в разреще одного свойства по дням.
   * [MP.getRetention](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#mpgetretention----Получит-когортный-анализ) - Получить когортный анализ.
   * [MP.getRawData](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#mpgetrawdata----Получит-сырые-данные-из-api-mixpanel) - Получить выгрузку сырых данных из Mixpanel.
+* [Информация об авторе пакета](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#Автор-пакета-Алексей-Селезнёв-head-of-analytics-dept-at-netpeak)
 
 # Краткое описание пакета rmixpanel
 Пакет rmixpanel является R клиентом для работы с API веб аналитической платформы [Mixpanel](https://mixpanel.com/), предназначем для максимально удобной загрузки данных из API mixpanel в R.
