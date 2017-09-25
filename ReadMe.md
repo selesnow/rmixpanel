@@ -1,6 +1,6 @@
 # Содержание ReadMe пакета rmixpanel
 * [Краткое описание пакета rmixpanel](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#Краткое-описание-пакета-rmixpanel)
-* Установка пакта rmixpanel
+* [Установка пакта rmixpanel](https://github.com/selesnow/rmixpanel#Установка-пакета-rmixpanel)
 * Как получить API Secret для работы с API Mixpanel
 * Функции пакета rmixpanel
   * [MP.getEvents]() - Получить количество разичных событий по дням.
@@ -71,8 +71,26 @@ devtools::install_github("selesnow/rmixpanel")
   * "day" - Группировка по дням
   * "week" - Группировка по неделям
   * "month" - Группировка по месяцам
-* interva	- Целое число, количество временных единиц возврата данных, зависит от значения аргумента unit, если unit = "day", а в interval указано 5, то будут возвращены данные за текущий и 4 предыдущих дня, если unit = "month" а interval = 2, то будут возвращены данные за текущий и предыдущий месяц, используйте либо аргумент interval, либо date_frome - date_to, одновременно использовать эти аргументы нельзя.
-* from_date	
-The first date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
-* to_date	
-The last date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
+* interval	- Целое число, количество временных единиц возврата данных, зависит от значения аргумента unit, если unit = "day", а в interval указано 5, то будут возвращены данные за текущий и 4 предыдущих дня, если unit = "month" а interval = 2, то будут возвращены данные за текущий и предыдущий месяц, используйте либо аргумент interval, либо date_frome - date_to, одновременно использовать эти аргументы нельзя.
+* from_date	- Начальная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
+* to_date		- Конечная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
+
+### Пример использования 
+*Получить общее количество событий "posting_success","emu","session_start","$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням.*
+```
+MP_events_day <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
+                              event = c("posting_success","emu","session_start","$custom_event:585946"),
+                              type = "general",
+                              unit = "day",
+                              from_date = "2017-07-01",
+                              to_date = "2017-07-25")
+```
+*Получить среднее количество событий "session_start" и "$custom_event:585946" за последние 2 месяца, с группировкой по месяцам.*
+```
+MP_events_month <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
+                                event = c("session_start","$custom_event:585946"),
+                                interval = 2,
+                                type = "average",
+                                unit = "month")
+```
+
