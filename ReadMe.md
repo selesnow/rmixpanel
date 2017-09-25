@@ -4,7 +4,7 @@
 * [Как получить API Secret для работы с API Mixpanel](https://github.com/selesnow/rmixpanel#Как-получить-api_secret-для-работы-с-api-mixpanel)
 * [Функции пакета rmixpanel](https://github.com/selesnow/rmixpanel#Функции-пакета-rmixpanel)
   * [MP.getEvents](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#mpgetevents---Получить-количество-разичных-событий-по-дням) - Получить количество разичных событий по дням.
-  * [MP.getEventsProperty]() - Получит количество события в разреще одного свойства по дням.
+  * [MP.getEventsProperty](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#mpgeteventsproperty---Получит-количество-события-в-разреще-одного-свойства-по-дням) - Получит количество события в разреще одного свойства по дням.
   * [MP.getRetention]() - Получить когортный анализ.
   * [MP.getRawData]() - Получить выгрузку сырых данных из Mixpanel.
 
@@ -182,4 +182,30 @@ retension_property <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988
                                       to_date = "2017-09-25")
 ```
 
+## MP.getRawData  - Получит сырые данные из API Mixpanel.
+*Данная функция работает достаточно долго, при большом объёме событий в аккаунте их обработка может занимать часы, в связи с чем рекомендуется использовать выгрузку сырых данных тольво в тех случаях когда получить необходимый набор данных с помощью других функций невозможно.*
 
+### Аргументы
+* api_secret	- API Secret проекта из которого необходимо получить данные.
+* event	- Текстовый векотор в котором перечислены названия событий количество которых необходимо вернуть, пример: c("posting_success","emu","session_start","$custom_event:585946".
+* where - Фильтр для результирующей таблицы, например 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]', означает вернуть когорты для метки utm_source равной AdWords ипо рекламным кампаниям в названии которых есть слово Brand. для того что бы разобраться с синтаксисом логических выражений перейдите по [ссылке](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
+* from_date	- Начальная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
+* to_date		- Конечная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
+
+### Пример использования 
+*Получить выгрузку событий emu и ивсех его свойтв за 10 июля 2017 года, только по источнику AdWords, и рекламным кампаниям в названии которых содержится Brand.*
+```
+MixPanel.RawData <- MP.getRawData(api_secret = "b96211faab26f71556316b12babae418",
+                                  event = "emu",
+                                  where = 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]',
+                                  from_date = "2017-07-10",
+                                  to_date = "2017-07-10")
+```
+
+*Получить выгрузку всех событий со всеми свойствами с 1 сентября 2017 года по 10 сентября 2017 года.*
+**Обработка такого запроса может продолжаться несколько часов, и более.
+```
+MixPanel.RawData <- MP.getRawData(api_secret = "b96211faab26f71556316b12babae418",
+                                  from_date = "2017-09-01",
+                                  to_date = "2017-09-10")
+```
