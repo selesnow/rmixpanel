@@ -3,7 +3,7 @@
 * [Установка пакта rmixpanel](https://github.com/selesnow/rmixpanel#Установка-пакета-rmixpanel)
 * [Как получить API Secret для работы с API Mixpanel](https://github.com/selesnow/rmixpanel#Как-получить-api_secret-для-работы-с-api-mixpanel)
 * [Функции пакета rmixpanel](https://github.com/selesnow/rmixpanel#Функции-пакета-rmixpanel)
-  * [MP.getEvents]() - Получить количество разичных событий по дням.
+  * [MP.getEvents](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#mpgetevents---Получить-количество-разичных-событий-по-дням) - Получить количество разичных событий по дням.
   * [MP.getEventsProperty]() - Получит количество события в разреще одного свойства по дням.
   * [MP.getRetention]() - Получить когортный анализ.
   * [MP.getRawData]() - Получить выгрузку сырых данных из Mixpanel.
@@ -118,7 +118,7 @@ MP_events_month <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
 ### Пример использования 
 *Получить общее количество событий "$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням и свойству mp_country_code.*
 ```
-MP_event_prop <- MP.getEventsProperty(api_secret = "b96211faab26f71556316b12babae418",
+MP_event_prop <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                       event = c("$custom_event:585946"),
                                       property = "mp_country_code",
                                       type = "general",
@@ -128,11 +128,58 @@ MP_event_prop <- MP.getEventsProperty(api_secret = "b96211faab26f71556316b12baba
 ```
 *Получить общее количество событий "$custom_event:585946" за текущий и предыдущий месяц, с группировкой по месяцам и свойству mp_country_code.*
 ```
-MP_event_prop_month <- MP.getEventsProperty(api_secret = "b96211faab26f71556316b12babae418",
+MP_event_prop_month <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                             event = c("$custom_event:585946"),
                                             property = "mp_country_code",
                                             type = "general",
                                             interval = 2,
                                             unit = "month")
 ```
+
+## MP.getRetention  - Получит когортный анализ.
+### Аргументы
+* api_secret	- API Secret проекта из которого необходимо получить данные.
+* event	- Текстовый векотор в котором перечислены названия событий количество которых необходимо вернуть, пример: c("posting_success","emu","session_start","$custom_event:585946".
+* retention_type - Тип создания когорты, допустимые значения "birth","compounded". По умолчанию "birth".
+* born_event - Текстовое значение, название событие которое считается рождением и зачислением пользователя в когорту. Аргумент учитывается только если в аргументе retention_type установлено значение "birth", в другом случае даный аргумент будет игнорироваться.
+* born_where - Логическое выражение для аргумента born_events, для того что бы разобраться с синтаксисом логических выражений перейдите по [ссылке](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
+* where - Фильтр для результирующей таблицы, например 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]', означает вернуть когорты для метки utm_source равной AdWords ипо рекламным кампаниям в названии которых есть слово Brand. для того что бы разобраться с синтаксисом логических выражений перейдите по [ссылке](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
+* unit	- Тип временной группировки данных, допустимые значения:
+  * "minute" - Группировка по минутам
+  * "hour" - Группировка по часам
+  * "day" - Группировка по дням
+  * "week" - Группировка по неделям
+  * "month" - Группировка по месяцам
+* interval	- Целое число, количество временных единиц возврата данных, зависит от значения аргумента unit, если unit = "day", а в interval указано 5, то будут возвращены данные за текущий и 4 предыдущих дня, если unit = "month" а interval = 2, то будут возвращены данные за текущий и предыдущий месяц, используйте либо аргумент interval, либо date_frome - date_to, одновременно использовать эти аргументы нельзя.
+* interval_count - Количество интервалов которое необходимо вернуть.
+* on - При необходимости можно сформировать когорты не только по дате, но и по любому из свойств события, например по источнику, 'properties["utm_source"]'.
+* from_date	- Начальная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
+* to_date		- Конечная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
+
+### Пример использования 
+*Получить общее количество событий "$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням и свойству mp_country_code.*
+```
+retension <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
+                             event = "emu",
+                             retention_type = "birth",
+                             unit = "week",
+                             born_event = "session_start",
+                             where = 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]',
+                             interval_count = 4,
+                             from_date = "2017-08-01",
+                             to_date = "2017-09-25")
+```
+*Получить когортный анализ по неделям, за 4 недели начиная с 1 августа 2017 года, разбив когорты по источнику, свойство utm_source.*
+```
+retension_property <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
+                                      event = "emu",
+                                      retention_type = "birth",
+                                      unit = "week",
+                                      born_event = "session_start",
+                                      on = 'properties["utm_source"]',
+                                      interval_count = 4,
+                                      from_date = "2017-08-01",
+                                      to_date = "2017-09-25")
+```
+
 
