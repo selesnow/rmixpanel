@@ -8,6 +8,7 @@ MP.getRetention <- function(api_secret = NULL,
                             interval_count = NULL,
                             unit = NULL,
                             on = NULL,
+                            tidy = TRUE,
                             from_date = NULL,
                             to_date = NULL){
   #Проверка агрументов
@@ -38,6 +39,7 @@ MP.getRetention <- function(api_secret = NULL,
   #Парсим реультат
   mixpaneleventdata <- content(api_answer, "parsed", "text/csv")
   
+  if(tidy==TRUE){
   #Запоминаем название колонок
   first_col_names <- names(mixpaneleventdata)[c(1,2)]
   #Переименовываем колонки
@@ -46,7 +48,10 @@ MP.getRetention <- function(api_secret = NULL,
   #new_data   <- gather(mixpaneleventdata,times, events, -`start date`)
   new_data   <- gather(mixpaneleventdata,times, events,-prop)
   #Возвращаем правильные имена колонок
-  names(new_data) <- c(first_col_names, "events")
+  names(new_data) <- c(first_col_names, "events")}
+  else{
+    new_data   <- mixpaneleventdata
+  }
 
   #Возвращаем ответ
   return(new_data)

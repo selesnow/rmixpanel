@@ -5,36 +5,36 @@ function(api_secret = NULL,
                                  values = NULL,
                                  type = "general",
                                  unit = "day",
-                                 interval = NULL,
-                                 from_date = NULL,
-                                 to_date = NULL,
+                                 interva = NULL,
+                                 from_date = Sys.Date() - 10,
+                                 to_date = Sys.Date(),
+                                 tidy = TRUE,
                                  limit = 10000){
-  #√è√∞√Æ√¢√•√∞√™√† √†√£√∞√≥√¨√•√≠√≤√Æ√¢
-    if(is.null(interva) & is.null(from_date) & is.null(to_date)){
-    from_date <- Sys.Date() - 10
-    to_date = Sys.Date()
-    }
+  #œÓ‚ÂÍ‡ ‡„ÛÏÂÌÚÓ‚
   
-  #√î√Æ√∞√¨√®√∞√Æ√¢√†√≠√®√• √ß√†√Ø√∞√Æ√±√†
+  #‘ÓÏËÓ‚‡ÌËÂ Á‡ÔÓÒ‡
   query_string <- paste0('https://',api_secret,'@mixpanel.com/api/2.0/events/',ifelse(is.null(property),'','properties/') ,'?',
                          'event=',event,
                          ifelse(is.null(property),'',paste0('&name=',property)),
                          ifelse(is.null(values)|is.null(property),'',paste0('&name=',values)),
                          '&type=',type,
                          '&unit=',unit,
-                         ifelse(is.null(interval),'',paste0('&interval=',interval)),
+                         ifelse(is.null(interva),'',paste0('&interva=',interva)),
                          ifelse(is.null(from_date),'',paste0('&from_date=',from_date)),
                          ifelse(is.null(to_date),'',paste0('&to_date=',to_date)),
                          '&limit=',limit,
                          '&format=csv')
   
-  #√é√≤√Ø√∞√†√¢√™√† √ß√†√Ø√∞√Æ√±√† √™ API
+  #ŒÚÔ‡‚Í‡ Á‡ÔÓÒ‡ Í API
   api_answer <- GET(query_string)
   stop_for_status(api_answer)
   mixpaneleventdata <- content(api_answer, "parsed", "text/csv")
-  
-  #√è√∞√•√Æ√°√∞√†√ß√≥√•√¨ √¢ √Ø√∞√†√¢√®√´√º√≠√ª√© √¥√Æ√∞√¨√†√≤
+  if(tidy==TRUE){
+  #œÂÓ·‡ÁÛÂÏ ‚ Ô‡‚ËÎ¸Ì˚È ÙÓÏ‡Ú
   new_data   <- gather(mixpaneleventdata,property, event, -date)
-  colnames(new_data) <- c("date",property,event)
+  colnames(new_data) <- c("date",property,event)}
+  else{
+    new_data <- mixpaneleventdata
+  }
   return(new_data)
 }
