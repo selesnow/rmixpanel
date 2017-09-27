@@ -4,7 +4,7 @@
 \title{Get unique, total, or average data for of a single event and property over days, weeks, or months.}
 \description{Get unique, total, or average data for of a single event and property over days, weeks, or months. For more information go to https://mixpanel.com/help/reference/data-export-api#event-properties}
 \usage{
-MP.getEventsProperty(api_secret = NULL, event = NULL, property = NULL, values = NULL, type = "general", unit = "day", interva = NULL, from_date = Sys.Date() - 10, to_date = Sys.Date(), limit = 10000)
+MP.getEventsProperty(api_secret = NULL, event = NULL, property = NULL, values = NULL, type = "general", unit = "day", interva = NULL, from_date = Sys.Date() - 10, to_date = Sys.Date(), tidy = TRUE, limit = 10000)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,6 +17,7 @@ MP.getEventsProperty(api_secret = NULL, event = NULL, property = NULL, values = 
   \item{interva}{The number of "units" to return data for - minutes, hours, days, weeks, or months. 1 will return data for the current unit (minute, hour, day, week or month). 2 will return the current and previous units, and so on. Specify either interval or from_date and to_date.}
   \item{from_date}{The first date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.}
   \item{to_date}{The last date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.}
+  \item{tidy}{Logical, if TRUE apply tidy data format, if FALSE apply report data format. }
   \item{limit}{The maximum number of values to return. }
 }
 \details{
