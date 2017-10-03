@@ -2,7 +2,7 @@
 <center>
 <table>
   <tr>
-    <td><center><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD"><img src="http://img.freeflagicons.com/thumb/round_icon/united_kingdom/united_kingdom_640.png" height="80" alt="English"></img><Br><p>English</p></center></a></td>
+    <td><center><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD"><img src="http://img.freeflagicons.com/thumb/round_icon/united_kingdom/united_kingdom_640.png" height="80" alt="English"></img><p>English</p></center></a></td>
     <td><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md"><img src="http://izgranita.in.ua/img/ru_flag.ico" height="80" alt="Русский"></img></a></td>
   </tr>
 </table>
