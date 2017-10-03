@@ -6,7 +6,7 @@
     <td><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md"><img src="http://izgranita.in.ua/img/ru_flag.ico" height="80" alt="Русский"></img></a></td>
   </tr>
   <tr>
-     <td><center>English</center></td> 
+  <td><center><p>English</p></center></td> 
      <td><center>Русский</center></td> 
   </tr>
 </table>
