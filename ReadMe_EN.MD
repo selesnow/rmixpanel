@@ -7,7 +7,7 @@
   * [MP.getEventsProperty](https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD#mpgeteventsproperty---get-unique-total-or-average-data-for-of-a-single-event-and-property-over-days-weeks-or-months) - Get unique, total, or average data for of a single event and property over days, weeks, or months.
   * [MP.getRetention](https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD#mpgetretention----get-cohort-analysis) - Get cohort analysis.
   * [MP.getRawData](https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD#mpgetrawdata----get-a-raw-dump-of-tracked-events-over-a-time-period) - Get a "raw dump" of tracked events over a time period.
-* [About Author](https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md#Автор-пакета-Алексей-Селезнёв-head-of-analytics-dept-at-netpeak)
+* [About Author](https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD#author-alexey-seleznev-head-of-analytics-dept-at-netpeak)
 
 # Description of rmixpanel
 rmixpanel is the R client for Mixpanel API, use this tool if you need load data from Mixpanel API into R.
@@ -216,7 +216,7 @@ MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   from_date = "2017-09-01",
                                   to_date = "2017-09-10")
 ```
-## Author: Alexey Seleznev, Head of Analytics Dept. at Netpeak*
+## *Author: Alexey Seleznev, Head of Analytics Dept. at Netpeak*
  <p align="center">
 <img src="https://lh3.googleusercontent.com/R-0jgJSxIIhpag2L6YCIhJVIcIWx6-Jt5UCTRJjWzJewo47u2QBnik5CRF2dNB79jmsN_BFRjVOAYfvCqFcn3UNS_thGbbxF-99c9lwBWWlFI7JCWE43K5Yk9HnIW8i8YpTDx3l28IuYswaI-qc9QosHT1lPCsVilTfXTyV2empF4S74daOJ6x5QHYRWumT_2MhUS0hPqUsKVtOoveqDnGf3cF_VsN-RfOAwG9uCeGOgNRgv_fhSr41rw4LBND4gf05nO8zMp4TZMrrcUjKvvx6qNgYDor5LFOHiRmfKISYRVkWYe4wLyGO1FgkgTDjg0300lcur2t3txVwZUgROLZdaxOLx4owa8Rc8B8VKwd3vHxjov_aVfNPT4xf9jSFBBEOI-mfYpa55ejKDw-rqTQ6miFRFWpp_hjrk9KbGyB-Z6iZvYL-2dZ6mzgpUfs2I0tEAGsV07yTzboJ0RNCByC2-U-ZVjWdp2_9Au3FFoUcdQUAmPYOVqOv4r3oLbkkJKLj2A5jp7vf4IAoExLIfJuqEf7XN7fFcv4geib029qJjBt28wnqSO6TKEwB2fesR3uPHvGB6_6NHD70UDH-aCRCK4UBeoajtU0Y8Ks8Vwxo0oZBwmoEu8gudTFBF6mDT7GjLoGLDeNxE-TG7OtWUdxsJk7yzXGW3hE-VxsMD9g=s351-no?w=300" data-canonical-src="https://alexeyseleznev.files.wordpress.com/2017/03/as.png?w=300" style="max-width:100%;">
 </p>
