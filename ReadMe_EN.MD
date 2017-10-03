@@ -140,27 +140,27 @@ MP_event_prop_month <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98
 
 ## MP.getRetention  - Get cohort analysis.
 ### Arguments
-* api_secret	- API Secret проекта из которого необходимо получить данные.
-* event	- Текстовый векотор в котором перечислены названия событий количество которых необходимо вернуть, пример: c("posting_success","emu","session_start","$custom_event:585946".
-* retention_type - Тип создания когорты, допустимые значения "birth","compounded". По умолчанию "birth".
-* born_event - Текстовое значение, название событие которое считается рождением и зачислением пользователя в когорту. Аргумент учитывается только если в аргументе retention_type установлено значение "birth", в другом случае даный аргумент будет игнорироваться.
-* born_where - Логическое выражение для аргумента born_events, для того что бы разобраться с синтаксисом логических выражений перейдите по [ссылке](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
-* where - Фильтр для результирующей таблицы, например 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]', означает вернуть когорты для метки utm_source равной AdWords ипо рекламным кампаниям в названии которых есть слово Brand. для того что бы разобраться с синтаксисом логических выражений перейдите по [ссылке](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
-* unit	- Тип временной группировки данных, допустимые значения:
-  * "minute" - Группировка по минутам
-  * "hour" - Группировка по часам
-  * "day" - Группировка по дням
-  * "week" - Группировка по неделям
-  * "month" - Группировка по месяцам
-* interval	- Целое число, количество временных единиц возврата данных, зависит от значения аргумента unit, если unit = "day", а в interval указано 5, то будут возвращены данные за текущий и 4 предыдущих дня, если unit = "month" а interval = 2, то будут возвращены данные за текущий и предыдущий месяц, используйте либо аргумент interval, либо date_frome - date_to, одновременно использовать эти аргументы нельзя.
-* interval_count - Количество интервалов которое необходимо вернуть.
-* on - При необходимости можно сформировать когорты не только по дате, но и по любому из свойств события, например по источнику, 'properties["utm_source"]'.
-* tidy - Логическое значение, если установить TRUE (по умолчанию) то вы получите данные преобразованные в аккуратный формат ([tidy data](http://biostat-r.blogspot.com/2016/01/tidy-data.html), если установить значение FALSE вы получите данные преобразованные в формат матрицы.
-* from_date	- Начальная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
-* to_date		- Конечная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
+* api_secret	- Your API Mixpanel secret, you can find hin in mixpanel web interface: Account (http://img.netpeak.ua/alsey/150600941068_kiss_10kb.png) > Projects (http://img.netpeak.ua/alsey/150600948369_kiss_46kb.png).
+* event	- Character vector, the event or events that you wish to get data, for example c("posting_success","emu","session_start","$custom_event:585946".
+* retention_type - Must be either "birth" or "compounded". Defaults to "birth". For example "compounded".
+* born_event - The first event a user must do to be counted in a birth retention cohort. Required when retention_type is "birth"; ignored otherwise.
+* born_where - An expression to filter the returning events by. For example 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]', For more information go [link](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
+* where - An expression to filter the returning events by. For example 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]', For more information go [link](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
+* unit	- It determines the level of granularity of the data you get back. Note that you cannot get hourly uniques, Valid values:
+  * "minute" - Group by minutes
+  * "hour" - Group by hours
+  * "day" - Group by date
+  * "week" - Group by week
+  * "month" - Group by month
+* interval	- The number of "units" to return data for - minutes, hours, days, weeks, or months. 1 will return data for the current unit (minute, hour, day, week or month). 2 will return the current and previous units, and so on. Specify either interval or from_date and to_date.
+* interval_count - The number of intervals you want; defaults to 1. Note that we include a "0th" interval for events which take place less than one interval after the initial event.
+* on - The property expression to segment the second event on. See the expressions [section above]( https://mixpanel.com/help/reference/data-export-api#segmentation-expressions), for example 'properties["utm_source"]'.
+* tidy - Logical, if TRUE apply [tidy data](http://biostat-r.blogspot.com/2016/01/tidy-data.html) format, if FALSE apply report data format.
+* from_date	- The first date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
+* to_date		- The last date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
 
-### Пример использования 
-*Получить общее количество событий "$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням и свойству mp_country_code.*
+### Example
+*Get cohort analisys by event "$custom_event:585946" from 1 june of 2017 till 25 july of 2017, with week steps*
 ```
 retension <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                              event = "emu",
@@ -172,7 +172,7 @@ retension <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                              from_date = "2017-08-01",
                              to_date = "2017-09-25")
 ```
-*Получить когортный анализ по неделям, за 4 недели начиная с 1 августа 2017 года, разбив когорты по источнику, свойство utm_source.*
+*Get cohort analisys by week, in last four weeks from 1 august of 2017, and segmentation cohort by propery utm_source.*
 ```
 retension_property <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                       event = "emu",
@@ -185,18 +185,23 @@ retension_property <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988
                                       to_date = "2017-09-25")
 ```
 
-## MP.getRawData  - Получит сырые данные из API Mixpanel.
-*Данная функция работает достаточно долго, при большом объёме событий в аккаунте их обработка может занимать часы, в связи с чем рекомендуется использовать выгрузку сырых данных тольво в тех случаях когда получить необходимый набор данных с помощью других функций невозможно.*
+## MP.getRawData  - Get a "raw dump" of tracked events over a time period..
+*Work duration of this function is too long and use him only if you can't get data using another functions.*
 
-### Аргументы
-* api_secret	- API Secret проекта из которого необходимо получить данные.
-* event	- Текстовый векотор в котором перечислены названия событий количество которых необходимо вернуть, пример: c("posting_success","emu","session_start","$custom_event:585946".
-* where - Фильтр для результирующей таблицы, например 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]', означает вернуть когорты для метки utm_source равной AdWords ипо рекламным кампаниям в названии которых есть слово Brand. для того что бы разобраться с синтаксисом логических выражений перейдите по [ссылке](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
-* from_date	- Начальная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
-* to_date		- Конечная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
+### Example usage cases
+* If you receive a spike of 10K events but notice that only a few users contributed to it and would like to dive deeper into the data.
+* If you are buying mobile ads and would like to dive deeper into the exact UDIDs and see who you really can attribute to the install.
+* If you are doing some very custom analysis Mixpanel cannot currently do. If this is the case, please email support@mixpanel.com so we can either improve our product or possibly show you how you can do it with us.
 
-### Пример использования 
-*Получить выгрузку событий emu и ивсех его свойтв за 10 июля 2017 года, только по источнику AdWords, и рекламным кампаниям в названии которых содержится Brand.*
+### Arguments
+* api_secret	- Your API Mixpanel secret, you can find hin in mixpanel web interface: Account (http://img.netpeak.ua/alsey/150600941068_kiss_10kb.png) > Projects (http://img.netpeak.ua/alsey/150600948369_kiss_46kb.png).
+* event	- Character vector, the event or events that you wish to get data, for example c("posting_success","emu","session_start","$custom_event:585946".
+* where - An expression to filter the returning events by. For example 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]', For more information go [link](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
+* from_date	- The first date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
+* to_date		- The last date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
+
+### Example
+*Get all events emu with all his properties from 10 july 2017 года, only by utm_source is AdWords, and campaign name constain "Brand".*
 ```
 MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   event = "emu",
@@ -205,14 +210,13 @@ MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   to_date = "2017-07-10")
 ```
 
-*Получить выгрузку всех событий со всеми свойствами с 1 сентября 2017 года по 10 сентября 2017 года.*
-**Обработка такого запроса может продолжаться несколько часов, и более.
+*Get all events with all properties from 1 september 2017 till 10 september 2017.*
 ```
 MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   from_date = "2017-09-01",
                                   to_date = "2017-09-10")
 ```
-## Автор пакета: Алексей Селезнёв, Head of Analytics Dept. at Netpeak*
+## Author: Алексей Селезнёв, Head of Analytics Dept. at Netpeak*
  <p align="center">
 <img src="https://lh3.googleusercontent.com/R-0jgJSxIIhpag2L6YCIhJVIcIWx6-Jt5UCTRJjWzJewo47u2QBnik5CRF2dNB79jmsN_BFRjVOAYfvCqFcn3UNS_thGbbxF-99c9lwBWWlFI7JCWE43K5Yk9HnIW8i8YpTDx3l28IuYswaI-qc9QosHT1lPCsVilTfXTyV2empF4S74daOJ6x5QHYRWumT_2MhUS0hPqUsKVtOoveqDnGf3cF_VsN-RfOAwG9uCeGOgNRgv_fhSr41rw4LBND4gf05nO8zMp4TZMrrcUjKvvx6qNgYDor5LFOHiRmfKISYRVkWYe4wLyGO1FgkgTDjg0300lcur2t3txVwZUgROLZdaxOLx4owa8Rc8B8VKwd3vHxjov_aVfNPT4xf9jSFBBEOI-mfYpa55ejKDw-rqTQ6miFRFWpp_hjrk9KbGyB-Z6iZvYL-2dZ6mzgpUfs2I0tEAGsV07yTzboJ0RNCByC2-U-ZVjWdp2_9Au3FFoUcdQUAmPYOVqOv4r3oLbkkJKLj2A5jp7vf4IAoExLIfJuqEf7XN7fFcv4geib029qJjBt28wnqSO6TKEwB2fesR3uPHvGB6_6NHD70UDH-aCRCK4UBeoajtU0Y8Ks8Vwxo0oZBwmoEu8gudTFBF6mDT7GjLoGLDeNxE-TG7OtWUdxsJk7yzXGW3hE-VxsMD9g=s351-no?w=300" data-canonical-src="https://alexeyseleznev.files.wordpress.com/2017/03/as.png?w=300" style="max-width:100%;">
 </p>
