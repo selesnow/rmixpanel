@@ -2,12 +2,12 @@
 <center>
 <table>
   <tr>
-    <td><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD"><img src="http://img.freeflagicons.com/thumb/round_icon/united_kingdom/united_kingdom_640.png" height="80" alt="English"></img></a></td>
-    <td><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md"><img src="http://izgranita.in.ua/img/ru_flag.ico" height="80" alt="Русский"></img></a></td>
+    <td><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD"><img src="http://img.freeflagicons.com/thumb/round_icon/united_kingdom/united_kingdom_640.png" height="80"></img></a></td>
+    <td><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md"><img src="http://izgranita.in.ua/img/ru_flag.ico" height="80"></img></a></td>
   </tr>
   <tr>
-  <td align="center">English</td> 
-     <td><center>Русский</center></td> 
+  <td align="center"><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD">English</a></td> 
+  <td align="center"><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md">Русский</a></td> 
   </tr>
 </table>
 </center>
