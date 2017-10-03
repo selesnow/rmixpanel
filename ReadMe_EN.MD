@@ -61,7 +61,7 @@ API Secret is a require argument of each rmixpanel functions.
 ### Arguments
 
 * api_secret	- Your API Mixpanel secret, you can find hin in mixpanel web interface: Account (http://img.netpeak.ua/alsey/150600941068_kiss_10kb.png) > Projects (http://img.netpeak.ua/alsey/150600948369_kiss_46kb.png).
-* event	- The event or events that you wish to get data for, example c("play song", "log in", "add playlist").
+* event	- Character vector, the event or events that you wish to get data for, example c("play song", "log in", "add playlist").
 * type	- The analysis type you would like to get data for - such as general, unique, or average events. Valid values:
   * "general" - Total events number
   * "unique" - Number of unique users commit event
@@ -77,7 +77,7 @@ API Secret is a require argument of each rmixpanel functions.
 * to_date		- The last date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
 
 ### Example
-*Получить общее количество событий "posting_success","emu","session_start","$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням.*
+*Get total number of event "posting_success","emu","session_start","$custom_event:585946" from 1 june of 2017 till 25 july of 2017, with group by day.*
 ```
 MP_events_day <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                               event = c("posting_success","emu","session_start","$custom_event:585946"),
@@ -86,7 +86,7 @@ MP_events_day <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                               from_date = "2017-07-01",
                               to_date = "2017-07-25")
 ```
-*Получить среднее количество событий "session_start" и "$custom_event:585946" за последние 2 месяца, с группировкой по месяцам.*
+*Get average events number of event "session_start" and "$custom_event:585946" in the last two weeks, with group by month.*
 ```
 MP_events_month <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                 event = c("session_start","$custom_event:585946"),
@@ -95,30 +95,30 @@ MP_events_month <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                 unit = "month")
 ```
 
-## MP.getEventsProperty - Получит количество события в разреще одного свойства по дням.
-### Аргументы
-* api_secret	- API Secret проекта из которого необходимо получить данные.
-* event	- Текстовый векотор в котором перечислены названия событий количество которых необходимо вернуть, пример: c("posting_success","emu","session_start","$custom_event:585946".
-* property - Текстовое значение, имя свойства в разрезе которого вы хотите получить количество событий, например "mp_country_code".
-* values - Фильтр по значению выбранного свойства, например если в качестве свойства вы указали пол ("gender"), то он может быть мужской("male"), женский("female") или неопределённый("unknown"),  если вам необходимо получить данные только по эженскому и неопредёлнному полу можно указать значение '["female", "unknown"]'.
-* type	- Способ агрегации полученных данных, допустимые значения
-  * "general" - Общее количество событий
-  * "unique" - Количество посетителей создавших событие
-  * "average" - Среднее количество достижение события на пользователя
-* unit	- Тип временной группировки данных, допустимые значения:
-  * "minute" - Группировка по минутам
-  * "hour" - Группировка по часам
-  * "day" - Группировка по дням
-  * "week" - Группировка по неделям
-  * "month" - Группировка по месяцам
-* interval	- Целое число, количество временных единиц возврата данных, зависит от значения аргумента unit, если unit = "day", а в interval указано 5, то будут возвращены данные за текущий и 4 предыдущих дня, если unit = "month" а interval = 2, то будут возвращены данные за текущий и предыдущий месяц, используйте либо аргумент interval, либо date_frome - date_to, одновременно использовать эти аргументы нельзя.
-* tidy - Логическое значение, если установить TRUE (по умолчанию) то вы получите данные преобразованные в аккуратный формат ([tidy data](http://biostat-r.blogspot.com/2016/01/tidy-data.html), если установить значение FALSE вы получите данные преобразованные в формат матрицы.
-* from_date	- Начальная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
-* to_date		- Конечная дата выгрузки данных в формате YYYY-MM-DD, используйте данный аргумент если не используете interval.
-* limit - Максимальное количество возвращаемых строк, не обязательный аргумент. По умолчанию 10000
+## MP.getEventsProperty - Get unique, total, or average data for of a single event and property over days, weeks, or months.
+### Arguments
+* api_secret	- Your API Mixpanel secret, you can find hin in mixpanel web interface: Account (http://img.netpeak.ua/alsey/150600941068_kiss_10kb.png) > Projects (http://img.netpeak.ua/alsey/150600948369_kiss_46kb.png).
+* event	- Character vector, the event or events that you wish to get data, for example c("posting_success","emu","session_start","$custom_event:585946".
+* property - The name of the property you would like to get data for. For example  "mp_country_code".
+* values - The specific property values that you would like to get data for Example: If you have a property "gender" you may have values "male", "female" and "unknown". If you just want data for female and unknown users, you can include a values property that looks like "["female", "unknown"]".
+* type	- The analysis type you would like to get data for - such as general, unique, or average events. Valid values:
+  * "general" - Total events number
+  * "unique" - Number of unique users commit event
+  * "average" - Average events number on user
+* unit	- It determines the level of granularity of the data you get back. Note that you cannot get hourly uniques, Valid values:
+  * "minute" - Group by minutes
+  * "hour" - Group by hours
+  * "day" - Group by date
+  * "week" - Group by week
+  * "month" - Group by month
+* interval	- The number of "units" to return data for - minutes, hours, days, weeks, or months. 1 will return data for the current unit (minute, hour, day, week or month). 2 will return the current and previous units, and so on. Specify either interval or from_date and to_date.
+* tidy - Logical, if TRUE apply [tidy data](http://biostat-r.blogspot.com/2016/01/tidy-data.html) format, if FALSE apply report data format.
+* from_date	- The first date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
+* to_date		- The last date to return data for, in yyyy-mm-dd format. This date is inclusive. Specify either interval or from_date and to_date.
+* limit - The maximum number of values to return.
 
-### Пример использования 
-*Получить общее количество событий "$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням и свойству mp_country_code.*
+### Example 
+*Get total umber of event "$custom_event:585946" from 1 june of 2017 till 25 july of 2017, with group by day and property mp_country_code.*
 ```
 MP_event_prop <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                       event = c("$custom_event:585946"),
@@ -128,7 +128,7 @@ MP_event_prop <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988
                                       from_date = "2017-07-01",
                                       to_date = "2017-07-25")
 ```
-*Получить общее количество событий "$custom_event:585946" за текущий и предыдущий месяц, с группировкой по месяцам и свойству mp_country_code.*
+*Get total umber of event "$custom_event:585946" in current and previous month, with group by month and property mp_country_code.*
 ```
 MP_event_prop_month <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                             event = c("$custom_event:585946"),
@@ -138,8 +138,8 @@ MP_event_prop_month <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98
                                             unit = "month")
 ```
 
-## MP.getRetention  - Получит когортный анализ.
-### Аргументы
+## MP.getRetention  - Get cohort analysis.
+### Arguments
 * api_secret	- API Secret проекта из которого необходимо получить данные.
 * event	- Текстовый векотор в котором перечислены названия событий количество которых необходимо вернуть, пример: c("posting_success","emu","session_start","$custom_event:585946".
 * retention_type - Тип создания когорты, допустимые значения "birth","compounded". По умолчанию "birth".
