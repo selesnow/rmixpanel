@@ -10,13 +10,13 @@ function(api_secret = NULL,
                                  to_date = Sys.Date(),
                                  tidy = TRUE,
                                  limit = 10000){
-  #Проверка агрументов
+  #ГЏГ°Г®ГўГҐГ°ГЄГ  Г ГЈГ°ГіГ¬ГҐГ­ГІГ®Гў
   
-  #Формирование запроса
+  #Г”Г®Г°Г¬ГЁГ°Г®ГўГ Г­ГЁГҐ Г§Г ГЇГ°Г®Г±Г 
   query_string <- paste0('https://',api_secret,'@mixpanel.com/api/2.0/events/',ifelse(is.null(property),'','properties/') ,'?',
                          'event=',event,
                          ifelse(is.null(property),'',paste0('&name=',property)),
-                         ifelse(is.null(values)|is.null(property),'',paste0('&name=',values)),
+                         ifelse(is.null(values)|is.null(property),'',paste0('&values=',values)),
                          '&type=',type,
                          '&unit=',unit,
                          ifelse(is.null(interva),'',paste0('&interva=',interva)),
@@ -25,12 +25,12 @@ function(api_secret = NULL,
                          '&limit=',limit,
                          '&format=csv')
   
-  #Отправка запроса к API
+  #ГЋГІГЇГ°Г ГўГЄГ  Г§Г ГЇГ°Г®Г±Г  ГЄ API
   api_answer <- GET(query_string)
   stop_for_status(api_answer)
   mixpaneleventdata <- content(api_answer, "parsed", "text/csv")
   if(tidy==TRUE){
-  #Преобразуем в правильный формат
+  #ГЏГ°ГҐГ®ГЎГ°Г Г§ГіГҐГ¬ Гў ГЇГ°Г ГўГЁГ«ГјГ­Г»Г© ГґГ®Г°Г¬Г ГІ
   new_data   <- gather(mixpaneleventdata,property, event, -date)
   colnames(new_data) <- c("date",property,event)}
   else{
