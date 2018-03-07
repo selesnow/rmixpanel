@@ -10,6 +10,10 @@
 </script>
 </head>
 
+<p align="center">
+<a href="https://selesnow.github.io/"><img src="https://alexeyseleznev.files.wordpress.com/2017/03/as.png" height="80"></a>
+</p>
+
 <table>
     <tr>
       <td>
