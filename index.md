@@ -37,8 +37,8 @@
 
 <table align="center">
   <tr>
-    <td><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD"><img src="http://img.freeflagicons.com/thumb/round_icon/united_kingdom/united_kingdom_640.png" height="80"></a></td>
-    <td><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md"><img src="http://izgranita.in.ua/img/ru_flag.ico" height="80"></a></td>
+    <td><center><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD"><img src="http://img.freeflagicons.com/thumb/round_icon/united_kingdom/united_kingdom_640.png" height="80"></a></center></td>
+    <td><center><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md"><img src="http://izgranita.in.ua/img/ru_flag.ico" height="80"></a></center></td>
   </tr>
   <tr>
   <td align="center"><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD">English</a></td> 
