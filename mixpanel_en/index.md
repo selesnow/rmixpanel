@@ -36,12 +36,12 @@
 # Выберите язык описания пакета | Chose language of package description
 <table align="center">
   <tr>
-    <td><a href="https://selesnow.github.io/rmixpanel/mixpanel_en/"><img src="http://img.freeflagicons.com/thumb/round_icon/united_kingdom/united_kingdom_640.png" height="80"></a></td>
-    <td><a href="https://selesnow.github.io/rmixpanel/"><img src="http://izgranita.in.ua/img/ru_flag.ico" height="80"></a></td>
+    <td><center><a href="https://selesnow.github.io/rmixpanel/mixpanel_en/"><img src="http://img.freeflagicons.com/thumb/round_icon/united_kingdom/united_kingdom_640.png" height="80"></a></center></td>
+    <td><center><a href="https://selesnow.github.io/rmixpanel/"><img src="http://izgranita.in.ua/img/ru_flag.ico" height="80"></a></center></td>
   </tr>
   <tr>
-  <td align="center"><a href="https://selesnow.github.io/rmixpanel/mixpanel_en/">English</a></td> 
-  <td align="center"><a href="https://selesnow.github.io/rmixpanel/">Русский</a></td> 
+  <td align="center"><center><a href="https://selesnow.github.io/rmixpanel/mixpanel_en/">English</a></center></td> 
+  <td align="center"><center><a href="https://selesnow.github.io/rmixpanel/">Русский</a></center></td> 
   </tr>
 </table>
 
