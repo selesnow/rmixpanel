@@ -72,7 +72,7 @@ In order to get list of all available rmixpanel fuction use `help(package = "rmi
 # Install rmixpanel
 You can instal rmixpanel from GitHub repository, for this run next code in R console.
 
-```
+```r
 if(!"rmixpanel" %in% installed.packages()[,1]){install.packages("devtools")}
 devtools::install_github("selesnow/rmixpanel")
 ```
@@ -129,7 +129,7 @@ API Secret is a require argument of each rmixpanel functions.
 
 ### Example
 *Get total number of event "posting_success","emu","session_start","$custom_event:585946" from 1 june of 2017 till 25 july of 2017, with group by day.*
-```
+```r
 MP_events_day <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                               event = c("posting_success","emu","session_start","$custom_event:585946"),
                               type = "general",
@@ -138,7 +138,7 @@ MP_events_day <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                               to_date = "2017-07-25")
 ```
 *Get average events number of event "session_start" and "$custom_event:585946" in the last two weeks, with group by month.*
-```
+```r
 MP_events_month <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                 event = c("session_start","$custom_event:585946"),
                                 interval = 2,
@@ -170,7 +170,7 @@ MP_events_month <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
 
 ### Example 
 *Get total umber of event "$custom_event:585946" from 1 june of 2017 till 25 july of 2017, with group by day and property mp_country_code.*
-```
+```r
 MP_event_prop <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                       event = c("$custom_event:585946"),
                                       property = "mp_country_code",
@@ -180,7 +180,7 @@ MP_event_prop <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988
                                       to_date = "2017-07-25")
 ```
 *Get total umber of event "$custom_event:585946" in current and previous month, with group by month and property mp_country_code.*
-```
+```r
 MP_event_prop_month <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                             event = c("$custom_event:585946"),
                                             property = "mp_country_code",
@@ -212,7 +212,7 @@ MP_event_prop_month <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98
 
 ### Example
 *Get cohort analisys by event "$custom_event:585946" from 1 june of 2017 till 25 july of 2017, with week steps*
-```
+```r
 retension <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                              event = "emu",
                              retention_type = "birth",
@@ -224,7 +224,7 @@ retension <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                              to_date = "2017-09-25")
 ```
 *Get cohort analisys by week, in last four weeks from 1 august of 2017, and segmentation cohort by propery utm_source.*
-```
+```r
 retension_property <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                       event = "emu",
                                       retention_type = "birth",
@@ -253,7 +253,7 @@ retension_property <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988
 
 ### Example
 *Get all events emu with all his properties from 10 july 2017 года, only by utm_source is AdWords, and campaign name constain "Brand".*
-```
+```r
 MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   event = "emu",
                                   where = 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]',
@@ -262,7 +262,7 @@ MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
 ```
 
 *Get all events with all properties from 1 september 2017 till 10 september 2017.*
-```
+```r
 MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   from_date = "2017-09-01",
                                   to_date = "2017-09-10")
