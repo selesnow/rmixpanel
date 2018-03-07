@@ -76,7 +76,7 @@
 
 # Установка пакета rmixpanel
 Установить пакет можно непосредственно из репозитония на GitHub, для этого достаточно запустить в R консоли приведённый ниже код.
-```
+```r
 if(!"rmixpanel" %in% installed.packages()[,1]){install.packages("devtools")}
 devtools::install_github("selesnow/rmixpanel")
 ```
@@ -130,7 +130,7 @@ devtools::install_github("selesnow/rmixpanel")
 
 ### Пример использования 
 *Получить общее количество событий "posting_success","emu","session_start","$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням.*
-```
+```r
 MP_events_day <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                               event = c("posting_success","emu","session_start","$custom_event:585946"),
                               type = "general",
@@ -139,7 +139,7 @@ MP_events_day <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                               to_date = "2017-07-25")
 ```
 *Получить среднее количество событий "session_start" и "$custom_event:585946" за последние 2 месяца, с группировкой по месяцам.*
-```
+```r
 MP_events_month <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                 event = c("session_start","$custom_event:585946"),
                                 interval = 2,
@@ -171,7 +171,7 @@ MP_events_month <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
 
 ### Пример использования 
 *Получить общее количество событий "$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням и свойству mp_country_code.*
-```
+```r
 MP_event_prop <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                       event = c("$custom_event:585946"),
                                       property = "mp_country_code",
@@ -181,7 +181,7 @@ MP_event_prop <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988
                                       to_date = "2017-07-25")
 ```
 *Получить общее количество событий "$custom_event:585946" за текущий и предыдущий месяц, с группировкой по месяцам и свойству mp_country_code.*
-```
+```r
 MP_event_prop_month <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                             event = c("$custom_event:585946"),
                                             property = "mp_country_code",
@@ -213,7 +213,7 @@ MP_event_prop_month <- MP.getEventsProperty(api_secret = "hgf7fi437nhdsad7863y98
 
 ### Пример использования 
 *Получить общее количество событий "$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням и свойству mp_country_code.*
-```
+```r
 retension <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                              event = "emu",
                              retention_type = "birth",
@@ -225,7 +225,7 @@ retension <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                              to_date = "2017-09-25")
 ```
 *Получить когортный анализ по неделям, за 4 недели начиная с 1 августа 2017 года, разбив когорты по источнику, свойство utm_source.*
-```
+```r
 retension_property <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                       event = "emu",
                                       retention_type = "birth",
@@ -249,7 +249,7 @@ retension_property <- MP.getRetention(api_secret = "hgf7fi437nhdsad7863y98ryn988
 
 ### Пример использования 
 *Получить выгрузку событий emu и ивсех его свойтв за 10 июля 2017 года, только по источнику AdWords, и рекламным кампаниям в названии которых содержится Brand.*
-```
+```r
 MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   event = "emu",
                                   where = 'properties["utm_source"]=="AdWords" and "Brand" in properties["utm_campaign"]',
@@ -259,7 +259,7 @@ MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
 
 *Получить выгрузку всех событий со всеми свойствами с 1 сентября 2017 года по 10 сентября 2017 года.*
 **Обработка такого запроса может продолжаться несколько часов, и более.
-```
+```r
 MixPanel.RawData <- MP.getRawData(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                                   from_date = "2017-09-01",
                                   to_date = "2017-09-10")
