@@ -41,7 +41,7 @@
 
 # Установка пакета rmixpanel
 Установить пакет можно непосредственно из репозитония на GitHub, для этого достаточно запустить в R консоли приведённый ниже код.
-```
+```r
 if(!"rmixpanel" %in% installed.packages()[,1]){install.packages("devtools")}
 devtools::install_github("selesnow/rmixpanel")
 ```
@@ -95,7 +95,7 @@ devtools::install_github("selesnow/rmixpanel")
 
 ### Пример использования 
 *Получить общее количество событий "posting_success","emu","session_start","$custom_event:585946" с 1 июля 2017 года по 25 июля 2017 года, с группировкой по дням.*
-```
+```r
 MP_events_day <- MP.getEvents(api_secret = "hgf7fi437nhdsad7863y98ryn988h8",
                               event = c("posting_success","emu","session_start","$custom_event:585946"),
                               type = "general",
