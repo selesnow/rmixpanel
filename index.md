@@ -41,8 +41,8 @@
     <td><center><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md"><img src="http://izgranita.in.ua/img/ru_flag.ico" height="80"></a></center></td>
   </tr>
   <tr>
-  <td align="center"><center><<a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD">English</a></center><</td> 
-  <td align="center"><center><<a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md">Русский</a></center><</td> 
+  <td align="center"><center><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe_EN.MD">English</a></center></td> 
+  <td align="center"><center><a href="https://github.com/selesnow/rmixpanel/blob/master/ReadMe.md">Русский</a></center></td> 
   </tr>
 </table>
 
