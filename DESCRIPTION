@@ -1,9 +1,10 @@
 Package: rmixpanel
 Type: Package
-Title: What the package does (short line)
+Title: Get Data From Mixpanel API
 Version: 1.1.2
 Date: 2017-09-21
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Alexey Seleznev
+Maintainer: Alexey Seleznev <selesnow@gmail.com>
+Description: Loading data from Mixpanel API
+    <https://mixpanel.com/help/reference/javascript>. 
+License: GPL-2
